@@ -193,7 +193,7 @@
             </div>
             <div class="container">
                 <div>
-                    {{ $tire_services->links() }}
+                    {{ $tire_services->withQueryString()->links() }}
                 </div>
             </div>
         </main>
