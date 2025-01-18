@@ -10,13 +10,14 @@ return new class extends Migration
     {
         Schema::create('tire_services', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("image")
+            $table->string('name');
+            $table->string('image')
                 ->nullable();
-            $table->integer("rooms_count");
-            $table->integer("floor");
-            $table->integer("area");
-            $table->string("description");
+            $table->integer('rooms');
+            $table->integer('floors');
+            $table->integer('area');
+            $table->string('description')
+                ->nullable();
         });
     }
 
