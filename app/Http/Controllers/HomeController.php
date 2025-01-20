@@ -6,21 +6,22 @@ use App\Http\Filters\TireServiceFilter;
 use App\Http\Requests\FilterRequest;
 use Illuminate\Http\Request;
 use App\Models\TireService;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function __invoke(FilterRequest $request)
+    public function __invoke()
     {
-        $data = $request->validated();
+        $services = TireService::paginate(10);
 
-        $filter = app()->make(TireServiceFilter::class, ['queryParams' => array_filter($data)]);
-        $services = TireService::filter($filter)->paginate(10);
+        $distinct_rooms = TireService::getDistinctRooms();
 
-        $distinct_rooms = TireService::distinct()->orderBy('rooms_count')->get(['rooms_count']);
+        $area_bounds = TireService::getAreaBounds();
 
         return view("home_page", [
             "services" => $services,
-            "distinct_rooms" => $distinct_rooms
+            "distinct_rooms" => $distinct_rooms,
+            "area_bounds" => $area_bounds
         ]);
     }
 }

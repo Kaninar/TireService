@@ -11,11 +11,11 @@ class FilterRequest extends FormRequest
     {
         return
             [
-                "name" => "string",
-                "image" => "bool",
-                "area_from" => "int",
-                "area_to" => "int",
-                "rooms" => "array"
+                "name" => "max:255",
+                "image" => "",
+                "area_from" => "",
+                "area_to" => "",
+                "rooms" => ""
             ];
     }
 }
