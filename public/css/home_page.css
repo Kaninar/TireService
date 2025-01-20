@@ -2,10 +2,6 @@ body {
     background-color: #f6f6f6;
 }
 
-footer {
-    background-color: #ccc;
-}
-
 .btn {
     width: 100%;
     margin: 5px;
@@ -27,12 +23,13 @@ footer {
     display: inline-block;
 }
 
+
 .home-page_content {
     display: flex;
     flex-direction: row;
 }
 
-.picture_filter {
+/* .picture_filter {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     width: 100%;
@@ -56,7 +53,7 @@ footer {
 
     padding-block: 1px;
     padding-inline: 6px;
-}
+} */
 
 main {
     margin-right: auto;
@@ -69,13 +66,15 @@ main {
 }
 
 
-
+.number {
+    color: #ccc;
+}
 
 /*  */
 
 
 ::selection {
-    color: #fff;
+    color: #ccc;
     background: #17a2b8;
 }
 
