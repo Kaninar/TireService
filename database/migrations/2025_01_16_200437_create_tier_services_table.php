@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('area');
             $table->string('description')
                 ->nullable();
+
+            $table->index(['name', 'rooms', 'area']);
         });
     }
 

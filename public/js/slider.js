@@ -1,7 +1,7 @@
 function controlFromInput(fromSlider, fromInput, toInput, controlSlider)
 {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#0d6efd', controlSlider);
     if (from > to)
     {
         fromSlider.value = to;
@@ -15,7 +15,7 @@ function controlFromInput(fromSlider, fromInput, toInput, controlSlider)
 function controlToInput(toSlider, fromInput, toInput, controlSlider)
 {
     const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+    fillSlider(fromInput, toInput, '#C6C6C6', '#0d6efd', controlSlider);
     setToggleAccessible(toInput);
     if (from <= to)
     {
@@ -30,7 +30,7 @@ function controlToInput(toSlider, fromInput, toInput, controlSlider)
 function controlFromSlider(fromSlider, toSlider, fromInput)
 {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#0d6efd', toSlider);
     if (from > to)
     {
         fromSlider.value = to;
@@ -44,7 +44,7 @@ function controlFromSlider(fromSlider, toSlider, fromInput)
 function controlToSlider(fromSlider, toSlider, toInput)
 {
     const [from, to] = getParsed(fromSlider, toSlider);
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#0d6efd', toSlider);
     setToggleAccessible(toSlider);
     if (from <= to)
     {
@@ -59,8 +59,8 @@ function controlToSlider(fromSlider, toSlider, toInput)
 
 function getParsed(currentFrom, currentTo)
 {
-    const from = parseInt(currentFrom.value, 10);
-    const to = parseInt(currentTo.value, 10);
+    const from = parseFloat(currentFrom.value, 10);
+    const to = parseFloat(currentTo.value, 10);
     return [from, to];
 }
 
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () =>
     const toSlider = document.querySelector('#toSlider');
     const fromInput = document.querySelector('#fromInput');
     const toInput = document.querySelector('#toInput');
-    fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    fillSlider(fromSlider, toSlider, '#C6C6C6', '#0d6efd', toSlider);
     setToggleAccessible(toSlider);
 
     fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);

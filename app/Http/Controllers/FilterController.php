@@ -14,12 +14,14 @@ class FilterController extends Controller
         $data = $request->validated();
 
         $filter = app()->make(TireServiceFilter::class, ['queryParams' => array_filter($data)]);
-        $services = TireService::filter($filter)->paginate(10);
+        $services = TireService::filter($filter)->paginate(10)->withQueryString();
 
         $cards = view('service_card', ['services' => $services])->render();
+        $pagination = view('pagination', ['services' => $services])->render();
 
         return response()->json([
             'html' => $cards,
+            'pagination' => $pagination,
         ]);
     }
 }

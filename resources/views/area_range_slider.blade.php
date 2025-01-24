@@ -9,12 +9,12 @@
         <div class="form_control_container">
             <input class="form_control_container__time__input" type="number" id="fromInput"
                 value="{{ $area_bounds->min_area }}" min="{{ $area_bounds->min_area }}"
-                max="{{ $area_bounds->max_area }}" />
+                max="{{ $area_bounds->max_area }}" step="0.1" />
         </div>
         <div class="form_control_container">
             <input class="form_control_container__time__input" type="number" id="toInput"
                 value="{{ $area_bounds->max_area }}" min="{{ $area_bounds->min_area }}"
-                max="{{ $area_bounds->max_area }}" />
+                max="{{ $area_bounds->max_area }}" step="0.1" />
         </div>
     </div>
 </div>
