@@ -5,19 +5,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <link rel="stylesheet" href="{{ asset('css/home_page.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/area_range_slider.css') }}">
     <script src="{{ asset('js/slider.js') }}"></script>
-    <script src="{{ asset('js/vuex-persist.js') }}"></script>
-
+    <script src="{{ asset('js/storage.js') }}"></script>
+    <script src="{{ asset('js/axios.js') }}"></script>
+    <script src="{{ asset('js/crud.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-{{-- BODY --}}
 
 <body>
-    <script src="{{ URL::asset('js/axios.js') }}"></script>
-
-    {{-- HEADER --}}
     <div>
         @include('header')
     </div>
@@ -25,7 +24,6 @@
         <div class="home-page-content">
             <div class="filter-container container-fluid">
                 <div class="list-group">
-                    {{-- фото --}}
                     <div class="list-group-item">
                         <div class="form-check form-check-inline">
                             <label class="form-check-label">
@@ -34,11 +32,9 @@
                             </label>
                         </div>
                     </div>
-                    {{-- слово --}}
                     <div class="list-group-item">
                         @include('name_searchbar')
                     </div>
-                    {{-- комнаты --}}
                     <div class="list-group-item">
                         <h6>Количество комнат</h6>
                         @foreach ($distinct_rooms as $room)
@@ -51,24 +47,17 @@
                             </div>
                         @endforeach
                     </div>
-                    {{-- от до --}}
                     <div class="list-group-item">
                         @include('area_range_slider', ['area_bounds' => $area_bounds])
                     </div>
                 </div>
             </div>
-            {{-- RESULTS --}}
-            <div class="container results" id="results">
+            <div class="container-fluid results" id="results">
                 @include('service_card', ['services' => $services])
-                {{-- <div class="spinner-border text-primary" role="status" id="loading-spinner">
-                            <span class="visually-hidden">Загрузка...</span>
-                        </div> --}}
             </div>
         </div>
         </div>
-        {{-- PAGINATION --}}
-        <div class="container-fluid">
-
+        <div class="container-fluid" id="pages">
             @include('pagination', ['services' => $services])
         </div>
     </main>
