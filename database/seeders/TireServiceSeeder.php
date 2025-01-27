@@ -17,16 +17,6 @@ class TireServiceSeeder extends Seeder
 
     public function run(): void
     {
-        TireService::factory(10)->create();
-
-        // DB::table('tire_services')->insert([
-        //     'id' => id(),
-        //     'name' => Str::random(50),
-        //     "image" => string("image"),
-        //     "rooms_count" => integer("rooms_count"),
-        //     "floor" => Integer::random(10),
-        //     "area" => integer("area"),
-        //     "description" => string("description")
-        // ]);
+        TireService::factory(10_000)->create();
     }
 }
