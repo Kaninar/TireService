@@ -1,6 +1,8 @@
 let imageCheck, fromSlider, fromInput, toSlider, toInput, nameSearch;
 const sessionlStorage = window.sessionStorage;
 
+sessionlStorage.setItem('page', JSON.stringify(1));
+
 function getFromStorage(var_name)
 {
     return JSON.parse(sessionlStorage.getItem(var_name));
@@ -25,6 +27,13 @@ window.addEventListener("DOMContentLoaded", (event) =>
         }, 300);
     });
 
+    nameSearch.addEventListener("input", function (event)
+    {
+        sessionlStorage.setItem('name', JSON.stringify(nameSearch.value));
+
+        fetchFilteredItems();
+    });
+
     document.querySelectorAll('.room-checkbox').forEach(function (checkbox)
     {
         checkbox.addEventListener('change', function ()
@@ -34,6 +43,7 @@ window.addEventListener("DOMContentLoaded", (event) =>
                 let rooms = [];
                 window.sessionStorage.setItem('rooms', JSON.stringify(rooms));
             }
+
             rooms = JSON.parse(window.sessionStorage.getItem('rooms'));
 
             let data = checkbox.getAttribute('data-role');
@@ -48,13 +58,12 @@ window.addEventListener("DOMContentLoaded", (event) =>
             }
             else
             {
-
                 if (index > -1)
                 {
                     rooms.splice(index, 1);
                 }
             }
-            window.sessionStorage.setItem('rooms', JSON.stringify(rooms));
+            sessionStorage.setItem('rooms', JSON.stringify(rooms));
 
             debounce(() =>
             {
@@ -91,6 +100,24 @@ window.addEventListener("DOMContentLoaded", (event) =>
         fetchFilteredItems();
     });
 
+    document.addEventListener('click', function (event)
+    {
+        if (event.target.classList.contains('page-link'))
+        {
+            event.preventDefault();
+            const url = event.target.href;
+            const pageParam = new URL(url).searchParams.get('page') ?? 1;
+
+            if (pageParam)
+            {
+                sessionStorage.setItem('page', pageParam);
+            }
+
+
+            fetchFilteredItems();
+        }
+    });
+
     if (pageAccessedByReload)
     {
         loadSavedFilters();
@@ -110,10 +137,10 @@ function loadSavedFilters()
 {
     imageCheck.checked = getFromStorage('image');
 
-    fromSlider.value = getFromStorage('from_area');
-    fromInput.value = getFromStorage('from_area');
-    toSlider.value = getFromStorage('to_area');
-    toInput.value = getFromStorage('to_area');
+    // fromSlider.value = parseFloat(getFromStorage('from_area'));
+    // fromInput.value = getFromStorage('from_area');
+    // toSlider.value = getFromStorage('to_area');
+    // toInput.value = getFromStorage('to_area');
 
     nameSearch.value = getFromStorage('name');
 

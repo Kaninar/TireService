@@ -11,10 +11,9 @@ function getFilters()
     const filters = {
         area_from: document.querySelector('#fromSlider').value,
         area_to: document.querySelector('#toSlider').value,
-        page: 1,
+        page: getFromStorage('page'),
         rooms: []
     };
-
 
     document.querySelectorAll('.room-checkbox:checked').forEach(function (checkbox)
     {
@@ -50,22 +49,17 @@ function fetchFilteredItems()
     }
 
     var resultContainer = document.getElementById('results');
-    var loadingSpinner = document.querySelector('#loading-spinner');
 
     axios.get("/filter?" + params.toString())
         .then(response =>
         {
-            //loadingSpinner.style.display = 'none';
-            // resultContainer.disabled = false;
             resultContainer.innerHTML = response.data.html;
-            //document.querySelector('pages').innerHTML = response.data.pagination;
-
+            document.querySelector("#pages").innerHTML = response.data.pagination;
         }).catch(function (error)
         {
             console.error(error);
             document.getElementById('result').innerHTML = '<p>Произошла ошибка при загрузке данных.</p>';
         });
-
 
     window.history.replaceState(null, null, '?' + params.toString());
 }
